@@ -373,6 +373,7 @@ class DenseNet:
     def test(self , data , batch_size , ):
         print "test | debug"
         print "\t",data.num_examples
+        print '\t',batch_size // data.num_examples
         num_examples = data.num_examples
         total_loss=[]
         total_accuracy=[]
