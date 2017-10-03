@@ -81,6 +81,7 @@ if '__main__' == __name__:
     model_params = vars(args)
     ### 임시적으로 사용함 ###
     args.train=True
+
     ### 임시적으로 사용함 ###
 
 

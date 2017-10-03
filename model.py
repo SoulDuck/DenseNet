@@ -378,6 +378,13 @@ class DenseNet:
         for i in range(batch_size // num_examples):
             batch = data.next_batch(batch_size)
             images , labels = batch
+            print "test | debug"
+            print '\t images shape , ',np.shape(images)
+            print '\t labels shape , ',np.shape(labels)
+            print '\t images pixel max value' , np.max(images)
+
+            ##debug##
+
             feed_dict={self.images:images ,
                        self.labels: labels ,
                        self.is_training : False}
