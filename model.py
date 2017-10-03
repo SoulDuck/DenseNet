@@ -85,7 +85,7 @@ class DenseNet:
             self.sess.run(tf.global_variables_initializer())
             logswriter = tf.summary.FileWriter
         self.saver = tf.train.Saver()
-        print 'a'
+
         self.summary_writer = logswriter(logdir=self.logs_path)
         print 'initialize...done'
 

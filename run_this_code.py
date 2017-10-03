@@ -100,8 +100,7 @@ if '__main__' == __name__:
 
     print data_provider
     print "initialize_model..."
-    print 'data_shape',data_provider.data_shape
-    print len(model_params)
+
     print model_params
     model=model.DenseNet(data_provider=data_provider , **model_params)
 
