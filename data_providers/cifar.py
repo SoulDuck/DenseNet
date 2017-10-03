@@ -40,13 +40,14 @@ def augment_all_images(initial_images , pad):
 class CifarDataProvider(DataProvider):
     def __init__ (self , save_path=None , validation_set = None , validation_split=None , \
                   shuffle=None , normalization =None  ,one_hot =True , augmentation=False ,**kwargs):
+        print 'CifarDataProvider(DataProvider)'
 
-        print 'save_path:' ,save_path
-        print 'validation_set:',validation_set
-        print 'validation_split:',validation_split
-        print 'shuffle:',shuffle
-        print 'normalization:',normalization
-        print 'one_hot:',one_hot
+        print '\tsave_path:' ,save_path
+        print '\tvalidation_set:',validation_set
+        print '\tvalidation_split:',validation_split
+        print '\tshuffle:',shuffle
+        print '\tnormalization:',normalization
+        print '\tone_hot:',one_hot
 
         self.augmentation=augmentation
 
