@@ -142,7 +142,9 @@ class DenseNet:
         if should_print:
             print("mean cross_entropy: %f, mean accuracy: %f" % (
                 loss, accuracy))
-        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' %prefix, simple_value=float(loss)),
+
+
+        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' %prefix, simple_value=tf.float(loss)),
                                     tf.Summary.Value(tag='accuracy_%s' % prefix, simple_value=float(accuracy))])
         self.summary_writer.add_summary(summary, epoch)
 
@@ -366,7 +368,8 @@ class DenseNet:
                 self.log_loss_accuracy(loss, accuracy ,self.batches_step , prefix='per_batch' , should_print=False)
         mean_loss = np.mean(total_loss)
         mean_accuracy = np.mean(total_accuracy)
-
+        print mean_loss
+        print mean_accuracy
         return mean_loss , mean_accuracy
 
     def test(self , data , batch_size , ):
