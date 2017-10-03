@@ -128,28 +128,29 @@ class CifarDataProvider(DataProvider):
         return self._n_classes
 
     def read_cifar(self , filenames):
+        print 'read_cifar'
         if self.n_classes ==10:
             labels_key = b'labels'
         elif self.n_classes ==100:
             lables_keys = b'fine_labels'
         images_res=[]
         labels_res=[]
-        print filenames
+
+        print '\t',filenames
         for fname in filenames:
             with open(fname , 'rb') as f:
                 images_and_labels=pickle.load(file=f)
 
             images = images_and_labels[b'data']
             labels = images_and_labels[b'labels']
-            print labels
             images = images.reshape(-1,3,32,32)
             images = images.swapaxes(1,3).swapaxes(1,2)
             images_res.append(images)
             labels_res.append(labels)
         images_res = np.vstack(images_res)
         labels_res = np.hstack(labels_res)
-        print 'label shape :', np.shape(images_res)
-        print 'image shape :', np.shape(labels_res)
+        print '\tlabel shape :', np.shape(images_res)
+        print '\timage shape :', np.shape(labels_res)
         if self.one_hot:
             labels_res = self.labels_to_one_hot(labels_res)
         return images_res , labels_res
