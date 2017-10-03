@@ -142,7 +142,7 @@ class DenseNet:
         if should_print:
             print("mean cross_entropy: %f, mean accuracy: %f" % (
                 loss, accuracy))
-        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' % prefix, simple_value=float(loss)),
+        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' %prefix, simple_value=float(loss)),
                                     tf.Summary.Value(tag='accuracy_%s' % prefix, simple_value=float(accuracy))])
         self.summary_writer.add_summary(summary, epoch)
 
@@ -321,18 +321,19 @@ class DenseNet:
             print("\n", '-' * 30, "Train epoch: %d" % epoch, '-' * 30, '\n')
             start_time = time.time()
             if epoch == reduce_lr_epoch_1 or epoch == reduce_lr_epoch_2:
-                learning_rate = learning_rate / 10
+                learning_rate = learning_rate / 10.
                 print("Decrease learning rate, new lr = %f" % learning_rate)
-                learning_reate=learning_rate/10.
+
             print 'Traininig...'
             loss ,acc = self.train_one_epoch(self.data_provider.train , batch_size ,learning_rate)
             if self.should_save_logs:
                 self.log_loss_accuracy(loss, acc, epoch,prefix='train')
+
             if train_param.get('validation_set',False):
                 print 'Validation...'
                 loss, acc=self.test(self.data_provider.validation , batch_size)
-            if self.should_save_logs:
-                self.log_loss_accuracy(loss ,acc  , epoch , prefix ='valid')
+                if self.should_save_logs:
+                    self.log_loss_accuracy(loss ,acc  , epoch , prefix ='valid')
 
             time_per_epoch = time.time() - start_time
             seconds_left= int((n_epochs-epoch) * time_per_epoch)
