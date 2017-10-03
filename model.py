@@ -138,7 +138,7 @@ class DenseNet:
         pass
     def load_model(self):
         pass
-    def log_loss_accuracy(self , loss , accuracy  , epoch , prefix , should_print):
+    def log_loss_accuracy(self , loss , accuracy  , epoch , prefix , should_print= True):
         if should_print:
             print("mean cross_entropy: %f, mean accuracy: %f" % (
                 loss, accuracy))
