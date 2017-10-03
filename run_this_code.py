@@ -107,7 +107,6 @@ if '__main__' == __name__:
 
 
     if args.train:
-        print 'data_provider', data_provider.train
         print "Data provider train images :" , data_provider.train.num_examples
         model.train_all_epochs(train_params)
 

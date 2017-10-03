@@ -353,7 +353,7 @@ class DenseNet:
         total_accuracy =[]
         for i in range(num_examples // batch_size):
             images, labels = data.next_batch(batch_size)
-            print np.shape(labels)
+
             feed_dict={
                 self.images:images,
                 self.labels:labels,
