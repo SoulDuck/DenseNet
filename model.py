@@ -370,10 +370,11 @@ class DenseNet:
         mean_accuracy = np.mean(total_accuracy)
         return mean_loss , mean_accuracy
 
-    def test(self , data , batch_size , ):
+    def test(self , data , batch_size ,):
         print "test | debug"
         print "\t",data.num_examples
         print '\t',batch_size // data.num_examples
+        print batch_size
         num_examples = data.num_examples
         total_loss=[]
         total_accuracy=[]
