@@ -361,6 +361,8 @@ class DenseNet:
                 self.is_training: True}
             fetches=[self.train_step , self.cross_entropy,self.accuracy]
             _, loss ,accuracy= self.sess.run(fetches ,feed_dict = feed_dict)
+            print 'loss : ', loss
+            print 'accuracy : ' ,accuracy
             total_loss.append(loss)
             total_accuracy.append(accuracy)
             if self.should_save_logs:
