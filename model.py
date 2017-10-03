@@ -144,7 +144,7 @@ class DenseNet:
                 loss, accuracy))
 
 
-        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' %prefix, simple_value=tf.float(loss)),
+        summary = tf.Summary(value=[tf.Summary.Value(tag='loss_%s' %prefix, simple_value=float(loss)),
                                     tf.Summary.Value(tag='accuracy_%s' % prefix, simple_value=float(accuracy))])
         self.summary_writer.add_summary(summary, epoch)
 
