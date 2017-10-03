@@ -379,7 +379,7 @@ class DenseNet:
         total_loss=[]
         total_accuracy=[]
 
-        for i in range(batch_size // num_examples):
+        for i in range(  num_examples // batch_size):
             batch = data.next_batch(batch_size)
             images , labels = batch
             print '\t images shape , ',np.shape(images)
