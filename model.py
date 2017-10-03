@@ -296,7 +296,7 @@ class DenseNet:
 
         #loss 설정
 
-        cross_entropy =tf.nn.softmax_cross_entropy_with_logits(logits=logits , labels=self.labels)
+        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits , labels=self.labels))
         self.cross_entropy=cross_entropy
         l2_loss = tf.add_n([tf.nn.l2_loss(var) for var in tf.trainable_variables()])
 
@@ -359,7 +359,7 @@ class DenseNet:
                 self.labels:labels,
                 self.learning_rate : learning_rate,
                 self.is_training: True}
-            fetches=[self.train_step , self.cross_entropy,self.accuracy]
+            fetches=[self.train_step , self.cross_entropy, self.accuracy]
             _, loss ,accuracy= self.sess.run(fetches ,feed_dict = feed_dict)
             print 'loss : ', loss
             print 'accuracy : ' ,accuracy
