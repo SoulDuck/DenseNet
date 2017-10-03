@@ -374,7 +374,7 @@ class DenseNet:
         print "test | debug"
         print "\t",data.num_examples
         print '\t',batch_size // data.num_examples
-        print batch_size
+        print '\t',batch_size
         num_examples = data.num_examples
         total_loss=[]
         total_accuracy=[]
