@@ -39,7 +39,6 @@ class DenseNet:
         self.bc_mode = bc_mode
         # compression rate at the transition layers
         self.reduction = reduction
-        ㄴ딜
         if not bc_mode:
             print "Build %s model with %d blocks %d composite layers each" %(model_type  , self.total_blocks , self.layers_per_block)
 
