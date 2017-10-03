@@ -371,6 +371,7 @@ class DenseNet:
         return mean_loss , mean_accuracy
 
     def test(self , data , batch_size , ):
+        print "test | debug"
         num_examples = data.num_examples
         total_loss=[]
         total_accuracy=[]
@@ -378,7 +379,7 @@ class DenseNet:
         for i in range(batch_size // num_examples):
             batch = data.next_batch(batch_size)
             images , labels = batch
-            print "test | debug"
+
             print '\t images shape , ',np.shape(images)
             print '\t labels shape , ',np.shape(labels)
             print '\t images pixel max value' , np.max(images)
