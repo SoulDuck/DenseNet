@@ -54,7 +54,7 @@ if '__main__' == __name__:
 
     parser.add_argument('--logs', dest='should_save_logs' ,action='store_true')
     parser.add_argument('--no_logs', dest='should_save_logs', action='store_false' )
-    parser.set_defaults(should_save_log=True)
+    parser.set_defaults(should_save_logs=True)
 
     parser.add_argument('--saves' , dest='should_save_model' , action = 'store_true' )
     parser.add_argument('--no-saves' , dest='should_save_model', action ='store_false')

@@ -360,7 +360,7 @@ class DenseNet:
             _, loss ,accuracy= self.sess.run(fetches ,feed_dict = feed_dict)
             total_loss.append(loss)
             total_accuracy.append(accuracy)
-            if self.should_save_log:
+            if self.should_save_logs:
                 self.batches_step +=1
                 self.log_loss_accuracy(loss, accuracy ,self.batches_step , prefix='per_batch' , should_print=False)
         mean_loss = np.mean(total_loss)
