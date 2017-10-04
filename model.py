@@ -109,13 +109,14 @@ class DenseNet:
     @property
     def save_path(self):
         print 'Debug | save_path'
-        print 'renew logs', self.renew_logs
+        print '\trenew logs', self.renew_logs
         try:
             save_path = 'model/%s' % self.model_identifer
             print '\t','save path : ', save_path
             if self.renew_logs:
                 shutil.rmtree(save_path ,  ignore_errors=True)
-            os.mkdir(save_path)
+            if not os.path.isdir(save_path):
+                os.mkdir(save_path)
             save_path = os.path.join(save_path , 'model.ckpt')
             self.save_path  = save_path
         except Exception as e:
@@ -128,15 +129,17 @@ class DenseNet:
     @property
     def logs_path(self):
         print 'Debug | logs_path'
-        print 'renew logs', self.renew_logs
+        print '\trenew logs', self.renew_logs
         try:
             logs_path = 'logs/%s' % self.model_identifer
-            print 'logs_path : ',logs_path
+            print '\tlogs_path : ',logs_path
 
             if self.renew_logs:
                 shutil.rmtree(logs_path , ignore_errors=True)
-            print logs_path
-            os.mkdir(logs_path)
+
+            if not os.path.isdir(logs_path):
+                os.mkdir(logs_path)
+
 
         except Exception as e:
             print 'Exception Error :' ,e
