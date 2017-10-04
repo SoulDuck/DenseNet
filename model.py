@@ -234,6 +234,7 @@ class DenseNet:
             output= tf.concat(axis=3 , values=(_input , comp_out))
         else:
             output  = tf.concat(3 ,(_input , comp_out))
+            print output
         return output
 
     def add_block(self , _input , growth_rate  , layers_per_block):
