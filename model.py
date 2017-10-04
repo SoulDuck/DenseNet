@@ -150,6 +150,8 @@ class DenseNet:
         self.saver.save(self.sess , self.save_path , global_step=global_step)
 
     def load_model(self):
+        print "Debug | load_model"
+        print '\tsaved path : ', self.save_path
         try:
             self.saver.restore(self.sess, self.save_path)
             print("Successfully load model from save path: %s" % self.save_path)

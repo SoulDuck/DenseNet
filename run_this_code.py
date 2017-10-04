@@ -80,7 +80,8 @@ if '__main__' == __name__:
 
     model_params = vars(args)
     ### 임시적으로 사용함 ###
-    args.train=True
+    args.train=False
+    args.test=True
 
     ### 임시적으로 사용함 ###
 
@@ -112,7 +113,8 @@ if '__main__' == __name__:
 
     if args.test:
         if not args.train:
-            args.load_model()
+
+            model.load_model()
         print "Data provider test images : " , data_provider.test.num_examples
         print "Testing..."
 
