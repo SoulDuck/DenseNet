@@ -111,27 +111,29 @@ class DenseNet:
         print 'Debug | save_path'
 
         try:
-            print '\t',self._save_path
-            save_path = self._save_path
-        except AttributeError:
             save_path = 'saves/%s' % self.model_identifer
+            print '\t','save path : ', save_path
+            if self.renew_logs:
+                shutil.rmtree(save_path ,  ignore_errors=True)
             os.mkdir(save_path)
-            save_path = os.path.join(save_path , 'model_ckpt')
-            self._save_path  = save_path
+            save_path = os.path.join(save_path , 'model.ckpt')
+            self.save_path  = save_path
+        except Exception as e:
+            print 'Exception Error : ',e
+            exit()
+
         return save_path
 
 
     @property
     def logs_path(self):
+        print 'Debug | logs_path'
         try:
-            print 'Debug | save_path'
-            print self.logs_path
-            logs_path = self.logs_path
-        except AttributeError as ae:
-            print 'Attribute Error : ',ae
             logs_path = 'logs/%s' % self.model_identifer
-            #if self.renew_logs:
-            #    shutil.rmtree(logs_path , ignore_errors=True)
+            print 'logs_path : ',logs_path
+
+            if self.renew_logs:
+                shutil.rmtree(logs_path , ignore_errors=True)
             print logs_path
             os.mkdir(logs_path)
 
