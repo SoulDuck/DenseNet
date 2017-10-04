@@ -62,7 +62,7 @@ if '__main__' == __name__:
 
     parser.add_argument('--renew_logs', dest='renew_logs' , action='store_true')
     parser.add_argument('--not-renew-logs' , dest='renew_logs' , action='store_false')
-    parser.set_defaults(renew_logs=True)
+    parser.set_defaults(renew_logs=False)
 
 
     args=parser.parse_args()
@@ -83,6 +83,7 @@ if '__main__' == __name__:
 
     args.test=True
     args.train = False
+
     ### 임시적으로 사용함 ###
 
 
