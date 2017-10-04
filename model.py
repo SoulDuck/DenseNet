@@ -124,6 +124,8 @@ class DenseNet:
     @property
     def logs_path(self):
         try:
+            print 'Debug | save_path'
+            print self.logs_path
             logs_path = self.logs_path
         except AttributeError as ae:
             print 'Attribute Error : ',ae
