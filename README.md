@@ -8,7 +8,7 @@
 #### 3.For each layer, the feature-maps of all preceding layers are used as inputs, 
 #### and its own feature-maps are used as inputs into all subsequent layers.
 
-<img src="readme_pic/figure1.png" alt="Drawing" style="width: 100px; height: 200px"/>
+<img src="readme_pic/figure_1.png" alt="Drawing" style="width: 100px; height: 200px"/>
 
 <img src="readme_pic/figure2.png" alt="Drawing" style="width: 100px; height: 200px"/>
 
