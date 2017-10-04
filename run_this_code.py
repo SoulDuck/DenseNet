@@ -81,8 +81,8 @@ if '__main__' == __name__:
     model_params = vars(args)
     ### 임시적으로 사용함 ###
 
-    #args.test=True
-    args.train = True
+    args.test=True
+    args.train = False
     ### 임시적으로 사용함 ###
 
 
