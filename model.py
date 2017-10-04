@@ -103,7 +103,7 @@ class DenseNet:
         print("Total training params: %.1fM" % (total_parameters / 1e6))
     @property
     def model_identifer(self):
-        return "{}_growth rate{}_depth{}_dataset_{}".format(self.model_type, self.growth_rate, self.depth, self.dataset_name)
+        return "{}_growth_rate{}_depth{}_dataset_{}".format(self.model_type, self.growth_rate, self.depth, self.dataset_name)
 
 
     @property
