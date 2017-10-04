@@ -61,6 +61,7 @@ class DenseNet:
 
         ##수작업으로 바꾼것##
         self.logs_path='./logs'
+        self.save_path='./model'
 
 
         self._define_inputs()
@@ -109,7 +110,7 @@ class DenseNet:
             save_path = self._save_path
         except AttributeError:
             save_path = 'saves/%s' % self.model_identifer
-            os.mkdir(save_path , exist_ok=True)
+            os.mkdir(save_path)
             save_path = os.path.join(save_path , 'model_ckpt')
             self._save_path  = save_path
         return save_path
@@ -135,6 +136,9 @@ class DenseNet:
 
 
     def save_model(self , global_step=None):
+        print "Debug | save_model"
+        print 'save path : ', self.save_path
+
         self.saver.save(self.sess , self.save_path , global_step=global_step)
 
     def load_model(self):
