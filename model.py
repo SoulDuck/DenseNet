@@ -109,7 +109,7 @@ class DenseNet:
     @property
     def save_path(self):
         print 'Debug | save_path'
-
+        print 'renew logs', self.renew_logs
         try:
             save_path = 'model/%s' % self.model_identifer
             print '\t','save path : ', save_path
@@ -128,6 +128,7 @@ class DenseNet:
     @property
     def logs_path(self):
         print 'Debug | logs_path'
+        print 'renew logs', self.renew_logs
         try:
             logs_path = 'logs/%s' % self.model_identifer
             print 'logs_path : ',logs_path
