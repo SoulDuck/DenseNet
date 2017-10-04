@@ -60,8 +60,8 @@ class DenseNet:
         self.batches_step=0
 
         ##수작업으로 바꾼것##
-        self.logs_path='./logs'
-        self.save_path='./model/best_model.ckpt'
+        #self.logs_path='./logs'
+        #self.save_path='./model/best_model.ckpt'
 
 
         self._define_inputs()
@@ -108,7 +108,10 @@ class DenseNet:
 
     @property
     def save_path(self):
+        print 'Debug | save_path'
+
         try:
+            print '\t',self._save_path
             save_path = self._save_path
         except AttributeError:
             save_path = 'saves/%s' % self.model_identifer
