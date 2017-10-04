@@ -22,3 +22,10 @@
 #### 4.substantially reduce the number of parameters
 
 #### 5.requiring less computation to achieve high performance
+
+
+# Usage
+#### train --train
+#### test --test 
+
+#### example : python run_this_code.py --train --not_renew_logs 
