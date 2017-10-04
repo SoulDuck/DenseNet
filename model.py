@@ -82,12 +82,14 @@ class DenseNet:
         if TF_VERSION <= 0.10:
             self.sess.run(tf.initialize_all_variables())
             logswriter = tf.train.SummaryWriter
+            logswriter.add_graph
         else:
             self.sess.run(tf.global_variables_initializer())
             logswriter = tf.summary.FileWriter
         self.saver = tf.train.Saver()
 
         self.summary_writer = logswriter(logdir=self.logs_path)
+        self.summary_writer.add_graph(tf.get_default_graph())
         print 'initialize...done'
 
     def _count_trainable_params(self):
@@ -137,8 +139,7 @@ class DenseNet:
 
     def save_model(self , global_step=None):
         print "Debug | save_model"
-        print 'save path : ', self.save_path
-
+        print '\tsave path : ', self.save_path
         self.saver.save(self.sess , self.save_path , global_step=global_step)
 
     def load_model(self):
