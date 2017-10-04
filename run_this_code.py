@@ -81,8 +81,8 @@ if '__main__' == __name__:
     model_params = vars(args)
     ### 임시적으로 사용함 ###
 
-    args.test=True
-    args.train = False
+    #args.test=True
+    #args.train = False
 
     ### 임시적으로 사용함 ###
 
@@ -115,11 +115,10 @@ if '__main__' == __name__:
     if args.test:
         print 'Test Mode'
         if not args.train:
-
             model.load_model()
+
         print "Data provider test images : " , data_provider.test.num_examples
         print "Testing..."
-
         loss , accuracy = model.test(data_provider.test , batch_size =200)
         print "mean cross_entropy: %f , mean accuracy : %f" %(loss , accuracy)
 
