@@ -53,15 +53,15 @@ if '__main__' == __name__:
     parser.add_argument('--reduction' , '-red' , type=float , default=0.5  , metavar='')
 
     parser.add_argument('--logs', dest='should_save_logs' ,action='store_true')
-    parser.add_argument('--no_logs', dest='should_save_logs', action='store_false' )
+    parser.add_argument('--no_logs', dest='should_save_logs', action='store_false')
     parser.set_defaults(should_save_logs=True)
 
-    parser.add_argument('--saves' , dest='should_save_model' , action = 'store_true' )
+    parser.add_argument('--saves' , dest='should_save_model' , action = 'store_true')
     parser.add_argument('--no-saves' , dest='should_save_model', action ='store_false')
     parser.set_defaults(should_save_model=True)
 
     parser.add_argument('--renew_logs', dest='renew_logs' , action='store_true')
-    parser.add_argument('--not-renew-logs' , dest='renew_logs' , action='store_false')
+    parser.add_argument('--not_renew_logs' , dest='renew_logs' , action='store_false')
     parser.set_defaults(renew_logs=False)
 
 
