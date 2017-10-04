@@ -113,6 +113,7 @@ if '__main__' == __name__:
         model.train_all_epochs(train_params)
 
     if args.test:
+        print 'Test Mode'
         if not args.train:
 
             model.load_model()
