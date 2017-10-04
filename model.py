@@ -111,7 +111,7 @@ class DenseNet:
         print 'Debug | save_path'
 
         try:
-            save_path = 'saves/%s' % self.model_identifer
+            save_path = 'model/%s' % self.model_identifer
             print '\t','save path : ', save_path
             if self.renew_logs:
                 shutil.rmtree(save_path ,  ignore_errors=True)
