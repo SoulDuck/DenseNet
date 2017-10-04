@@ -61,7 +61,7 @@ class DenseNet:
 
         ##수작업으로 바꾼것##
         self.logs_path='./logs'
-        self.save_path='./model'
+        self.save_path='./model/best_model.ckpt'
 
 
         self._define_inputs()
