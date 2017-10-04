@@ -10,6 +10,7 @@
 
 <img src="readme_pic/figure1.png" alt="Drawing" style="width: 100px; height: 200px"/>
 
+<img src="readme_pic/figure2.png" alt="Drawing" style="width: 100px; height: 200px"/>
 
 ## advantages:
 
@@ -22,7 +23,6 @@
 #### 4.substantially reduce the number of parameters
 
 #### 5.requiring less computation to achieve high performance
-
 
 # Usage
 #### train --train
