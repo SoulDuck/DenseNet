@@ -134,10 +134,19 @@ class DenseNet:
 
 
 
-    def save_model(self):
-        pass
+    def save_model(self , global_step=None):
+        self.saver.save(self.sess , self.save_path , global_step=global_step)
+
     def load_model(self):
-        pass
+        try:
+            self.saver.restore(self.sess, self.save_path)
+            print("Successfully load model from save path: %s" % self.save_path)
+            return
+        except Exception as e:
+            raise IOError("Falied to load model from save path : %s" %self.save_path)
+
+
+
     def log_loss_accuracy(self , loss , accuracy  , epoch , prefix , should_print= True):
         if should_print:
             print("mean cross_entropy: %f, mean accuracy: %f" % (
