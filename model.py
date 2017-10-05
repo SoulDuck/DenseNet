@@ -44,8 +44,11 @@ class DenseNet:
 
         if bc_mode:
             self.layers_per_block = self.layers_per_block //2
+            print 'layer per block : ',self.layers_per_block
+            print model_type
+            print self.total_blocks
             print "Build %s model with %d blocks ,  %d bottleneck layers and %d composite layers each." \
-                  %(model_type , self.total_blocks , self.layers_per_block)
+                  %(model_type , self.total_blocks ,self.layers_per_block ,self.layers_per_block)
 
         print "Reduction at transition layers : %.1f" %self.reduction
 
