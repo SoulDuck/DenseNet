@@ -219,7 +219,8 @@ class DenseNet:
             output = self.batch_norm(_input)
             output = tf.nn.relu(output)
             inter_features = out_features*4
-            output = self.conv2d(output , out_features= inter_features , kernel_size =1  , padding ='VALID' )
+            output = self.conv2d(output , out_features= inter_features , kernel_size =1  , padding ='VALID')
+            print 'debug bottlenect ',output
             output = self.dropout(output)
         return output
 
