@@ -92,13 +92,16 @@ if '__main__' == __name__:
         exit()
     train_params = get_train_params_by_name(args.dataset)
 
+    print 'Debeg | run_this_code '
+    print 'Model params : '
     for k,v in model_params.items():
-        print 'Debeg | run_this_code '
-        print 'Model params : '
+
         print "\t %s : %s "%(k,v)
+
+
+    print 'Debeg | run_this_code '
+    print 'Train  params : '
     for k ,v in train_params.items():
-        print 'Debeg | run_this_code '
-        print 'Train  params : '
         print "\t %s : %s " % (k, v)
 
 
