@@ -28,14 +28,25 @@ train_params_svhn = {
     'normalization': 'divide_255',
 }
 
-
-
+train_params_fundus = {
+    'batch_size':60,
+    'n_epoch' : 300 ,
+    'initial_learning_rate' : 0.1,
+    'reduce_lr_epoch_1': 100,
+    'reduce_lr_epoch_2': 200,
+    'validation_set':True,
+    'validation_split':None ,
+    'suffle':True,
+    'normalization': 'divide_255',
+}
 
 def get_train_params_by_name(name):
     if name in ['C10','C100','C10+','C100+']:
         return train_params_cifar
     if name == 'SVHN':
         return train_params_svhn
+    if name == 'fundus':
+        return train_params_fundus
 
 
 if '__main__' == __name__:
@@ -67,7 +78,7 @@ if '__main__' == __name__:
 
     args=parser.parse_args()
     if not args.keep_prob:
-        if args.dataset in ['C10' , 'C100' , 'SVHN']:
+        if args.dataset in ['C10' , 'C100'  , 'SVHN' , 'fundus']:
             args.keep_prob=0.8
         else:
             args.keep_prob=1.0
