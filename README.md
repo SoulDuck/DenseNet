@@ -29,3 +29,5 @@
 #### test --test 
 
 #### example : python run_this_code.py --train --not_renew_logs 
+
+<img src="readmd_pic/figure__2.png" alt="Drawing" style="width: 200; height: 200px"/>
