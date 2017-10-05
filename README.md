@@ -29,3 +29,7 @@
 #### test --test 
 
 #### example : python run_this_code.py --train --not_renew_logs 
+
+<img src="readme_pic/figure__2.png" alt="Drawing" style="width: 200px; height: 200px"/>
+
+
