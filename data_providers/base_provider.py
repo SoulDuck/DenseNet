@@ -44,6 +44,12 @@ class ImageDataSet(DataSet):
 
         return shuffled_images , shuffle_labels
 
+    def shuffle_args(self , args):
+        rand_indexes = np.random.permutation(args[0].shape[0])
+        new_args=map(lambda arg : arg[rand_indexes] , args)
+        return new_args
+
+
 
     def normalize_images(self,images , normalization_type):
 

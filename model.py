@@ -191,6 +191,7 @@ class DenseNet:
             tf.float32,
             shape=[None, self.n_classes],
             name='labels')
+
         self.learning_rate = tf.placeholder(
             tf.float32,
             shape=[],

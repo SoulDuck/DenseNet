@@ -29,6 +29,7 @@ train_params_svhn = {
 }
 
 train_params_fundus = {
+    'save_path':'./dataset',
     'batch_size':60,
     'n_epoch' : 300 ,
     'initial_learning_rate' : 0.1,
@@ -40,14 +41,18 @@ train_params_fundus = {
     'normalization': 'divide_255',
 }
 
+
+
 def get_train_params_by_name(name):
     if name in ['C10','C100','C10+','C100+']:
         return train_params_cifar
-    if name == 'SVHN':
+    elif name == 'SVHN':
         return train_params_svhn
-    if name == 'fundus':
+    elif name == 'Fundus':
         return train_params_fundus
-
+    else:
+        print 'Unknown Type'
+        raise Exception
 
 if '__main__' == __name__:
     parser  = argparse.ArgumentParser()
@@ -56,7 +61,7 @@ if '__main__' == __name__:
     parser.add_argument('--model_type' , '-m' , type=str , choices=['DenseNet' , 'DenseNet-BC'] , default='DenseNet')
     parser.add_argument('--growth_rate' , '-k' , type=int , choices=[12,24,40] , default=12 , help='growth rate for every layer')
     parser.add_argument('--depth' , '-d' , type=int , choices=[40 , 100 , 190 , 250] , default=40 , help ='Depth of every network')
-    parser.add_argument('--dataset', '-ds' , type=str , choices=['C10', 'C10+', 'C100' , 'C100+' , 'SVHN' ] , default='C10')
+    parser.add_argument('--dataset', '-ds' , type=str , choices=['C10', 'C10+', 'C100' , 'C100+' , 'SVHN' , 'Fundus' ] , default='C10')
     parser.add_argument('--total_blocks' , '-tb' , type=int , default=3 , metavar='')
     parser.add_argument('--keep_prob' , '-kp' , type=float , metavar='')
     parser.add_argument('--weight_decay' , '-wd' , type=float , default=1e-4 , metavar='')
@@ -74,11 +79,14 @@ if '__main__' == __name__:
     parser.add_argument('--renew_logs', dest='renew_logs' , action='store_true')
     parser.add_argument('--not_renew_logs' , dest='renew_logs' , action='store_false')
     parser.set_defaults(renew_logs=False)
-
-
     args=parser.parse_args()
+
+    ### 임시적으로 사용함 ###
+    # args.test=True
+    args.train = True
+    args.dataset = 'Fundus'
     if not args.keep_prob:
-        if args.dataset in ['C10' , 'C100'  , 'SVHN' , 'fundus']:
+        if args.dataset in ['C10' , 'C100'  , 'SVHN' , 'Fundus']:
             args.keep_prob=0.8
         else:
             args.keep_prob=1.0
@@ -90,12 +98,9 @@ if '__main__' == __name__:
 
 
     model_params = vars(args)
-    ### 임시적으로 사용함 ###
 
-    #args.test=True
-    #args.train = True
 
-    ### 임시적으로 사용함 ###
+
 
 
     if not args.train and not args.test:

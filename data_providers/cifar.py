@@ -54,10 +54,8 @@ class CifarDataProvider(DataProvider):
         self._save_path = save_path
         self.one_hot = one_hot
         download_data_url(self.data_url , self._save_path)
+        print self
         train_fnames , test_fnames  = self.get_filenames(self._save_path)
-
-
-
         images , labels = self.read_cifar(train_fnames)
         if validation_set is not None and validation_split is not None:
 
