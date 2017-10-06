@@ -31,7 +31,7 @@ train_params_svhn = {
 train_params_fundus = {
     'save_path':'./dataset',
     'batch_size':60,
-    'n_epoch' : 300 ,
+    'n_epochs' : 300 ,
     'initial_learning_rate' : 0.1,
     'reduce_lr_epoch_1': 100,
     'reduce_lr_epoch_2': 200,
@@ -85,6 +85,8 @@ if '__main__' == __name__:
     # args.test=True
     args.train = True
     args.dataset = 'Fundus'
+    args.total_blocks=7
+
     if not args.keep_prob:
         if args.dataset in ['C10' , 'C100'  , 'SVHN' , 'Fundus']:
             args.keep_prob=0.8

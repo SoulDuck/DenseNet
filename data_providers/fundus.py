@@ -48,8 +48,39 @@ class FundusDataProvider(DataProvider):
         self.one_hot=one_hot
         self.augmentation=augmentation
 
-        self.train_filenames=self.get_filenames(self._save_path)
-        images , labels , fnames=self.read_fundus()
+        train_filenames , test_filenames = self.get_filenames(self._save_path)
+        images , labels , fnames=self.read_fundus(train_filenames)
+        if validation_set is not None and validation_split is not None:
+            split_idx = int(images.shape[0] * (1 - validation_split))
+            print 'split idx :' , split_idx
+
+            self.train = FundusDataSet(
+                images=images[:split_idx],
+                labels=labels[:split_idx],
+                fnames= fnames[:split_idx],
+                n_classes=self.n_classes,
+                shuffle = self.shuffle,
+                normalization = self.normalization,
+                augmentation = self.augmentation)
+            self.validation = FundusDataSet(
+                images=images[split_idx:],
+                labels=labels[:split_idx:],
+                fnames=fnames[:split_idx:],
+                n_classes=self.n_classes,
+                shuffle=self.shuffle,
+                normalization=self.normalization,
+                augmentation=self.augmentation)
+        else:
+            self.train = FundusDataSet(
+                images=images,
+                labels=labels,
+                fnames=fnames,
+                n_classes=self.n_classes,
+                shuffle=self.shuffle,
+                normalization=self.normalization,
+                augmentation=self.augmentation)
+
+        images , labels , fnames=self.read_fundus(train_filenames)
 
         print "Debug end | FundusDataProvider | __init__ "
     @property
@@ -60,20 +91,25 @@ class FundusDataProvider(DataProvider):
         return self._n_classes
 
 
-    def read_fundus(self):
+    def read_fundus(self , filenames):
+        if filenames == None:
+            return
         print 'Debug start | Class FundusDataProvider | def read_fundus'
         ret_images=[]
         ret_labels=[]
         ret_fnames=[]
-        for f in self.train_filenames:
+        for f in filenames:
             images , labels , fnames=self.reconstruct_tfrecord_rawdata(f)
             ret_images.extend(images)
             ret_labels.extend(labels)
             ret_fnames.extend(fnames)
+        ret_images=np.asarray(ret_images)
+        ret_labels = np.asarray(ret_labels)
 
-        print 'total # images ',np.shape(ret_images)
-        print 'total # labels ',np.shape(ret_labels)
+        print 'total # images ',np.shape(np.asarray(ret_images))
+        print 'total # labels ',np.shape(np.asarray(ret_labels))
         print 'total # fnames ',np.shape(ret_fnames)
+        ret_labels=self.labels_to_one_hot(labels)
         return ret_images , ret_labels , ret_fnames
         print 'Debug end | Class FundusDataProvider | def read_fundus'
     @property
@@ -127,12 +163,12 @@ class FundusDataProvider(DataProvider):
 
 
 class FundusDataSet(ImageDataSet):
-    def __init__(self , images , labels , fnames , shuffle , normalization , augmentation):
-        if self.shuffle is None:
+    def __init__(self , images , labels , fnames , n_classes ,  shuffle , normalization , augmentation):
+        if shuffle is None:
             self.shuffle_every_epoch=None
-        elif self.shuffle is 'once_prior_train':
+        elif shuffle is 'once_prior_train':
             self.shuffle_every_epoch=False
-        elif  self.shuffle is 'every_epoch':
+        elif  shuffle is 'every_epoch':
             self.shuffle_every_epoch=True
         else:
             raise Exception('Unknown type of shuffling')
@@ -140,11 +176,12 @@ class FundusDataSet(ImageDataSet):
         self.images = images
         self.labels = labels
         self.fnames = fnames
+        self.n_classes=n_classes
         self.shuffle = shuffle
         self.normalization = normalization
         self.augmentataion = augmentation
 
-        self.normalization_images(images , self.normalization)
+        self.images=self.normalize_images(images , self.normalization)
         self.start_new_epoch()
 
     def start_new_epoch(self):
@@ -158,7 +195,7 @@ class FundusDataSet(ImageDataSet):
         if self.augmentataion:
             images = augment_all_images(images , pad=4)
         self.epoch_images = images
-        self.epoch_lables = labels
+        self.epoch_labels = labels
         self.epoch_fnames = fnames
     @property
     def num_examples(self):
@@ -190,6 +227,7 @@ class Fundus_NvsAbN_DataProvider(FundusDataProvider):
         tfrecord_paths=glob.glob(os.path.join(save_path,'*.tfrecord'))
         for tp in tfrecord_paths:
             train_filenames.append(tp)
-        print train_filenames
-        return train_filenames
+        test_filenames=None
+        print train_filenames , test_filenames
+        return train_filenames,test_filenames
 

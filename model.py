@@ -385,7 +385,11 @@ class DenseNet:
         total_loss = []
         total_accuracy =[]
         for i in range(num_examples // batch_size):
-            images, labels = data.next_batch(batch_size)
+            try:
+                images, labels = data.next_batch(batch_size)
+            except ValueError as ve:
+                #If DataSet is Fundus , get ValueError
+                images, labels , fnames= data.next_batch(batch_size)
 
             feed_dict={
                 self.images:images,

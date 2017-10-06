@@ -68,7 +68,7 @@ class CifarDataProvider(DataProvider):
                 shuffle=shuffle,
                 normalization=normalization,
                 augmentation = self.augmentation)
-            self.validateion = CifarDataSet(
+            self.validation = CifarDataSet(
                 images=images[split_idx:],
                 labels=labels[split_idx:],
                 n_classes=self.n_classes,
