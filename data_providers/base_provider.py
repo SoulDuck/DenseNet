@@ -12,7 +12,6 @@ class DataSet:
 
 
 class ImageDataSet(DataSet):
-    #여기서 어떤 기능을 하는거지???
 
     def _measure_mean_and_std(self):
         means=[]
