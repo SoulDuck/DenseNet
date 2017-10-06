@@ -53,7 +53,7 @@ if '__main__' == __name__:
     parser  = argparse.ArgumentParser()
     parser.add_argument('--train' , action='store_true' , help='Train the model')
     parser.add_argument('--test' , action='store_true')
-    parser.add_argument('--model_type' , '-m' , type=str , choices=['DenseNet' , 'DenseNet-BC'] , default='DenseNet-BC')
+    parser.add_argument('--model_type' , '-m' , type=str , choices=['DenseNet' , 'DenseNet-BC'] , default='DenseNet')
     parser.add_argument('--growth_rate' , '-k' , type=int , choices=[12,24,40] , default=12 , help='growth rate for every layer')
     parser.add_argument('--depth' , '-d' , type=int , choices=[40 , 100 , 190 , 250] , default=40 , help ='Depth of every network')
     parser.add_argument('--dataset', '-ds' , type=str , choices=['C10', 'C10+', 'C100' , 'C100+' , 'SVHN' ] , default='C10')
@@ -93,7 +93,7 @@ if '__main__' == __name__:
     ### 임시적으로 사용함 ###
 
     #args.test=True
-    args.train = True
+    #args.train = True
 
     ### 임시적으로 사용함 ###
 
